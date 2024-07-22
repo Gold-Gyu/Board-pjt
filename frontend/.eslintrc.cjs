@@ -14,16 +14,30 @@ module.exports = {
   ],
   ignorePatterns: ['dist', '.eslintrc.cjs'],
   parser: '@typescript-eslint/parser',
-  plugins: ['react-refresh',
+  plugins: [
+    'react-refresh',
     'react-hooks',
     '@typescript-eslint',
     'import',
-    'jsx-a11y'
+    'jsx-a11y',
+    'prettier',
   ],
   rules: {
     'react-refresh/only-export-components': [
       'warn',
       { allowConstantExport: true },
     ],
+    'prettier/prettier': 'warn',
   },
-}
+  settings: {
+    react: {
+      version: 'detect',
+    },
+    'import/resolver': {
+      typescript: {
+        alwaysTryTypes: true,
+        project: './tsconfig.json',
+      },
+    },
+  },
+};
