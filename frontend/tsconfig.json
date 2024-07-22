@@ -11,7 +11,7 @@
     "skipLibCheck": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
-    "jsx": "react-jsx"
+    "jsx": "react-jsx" // import React from 'react' 안해도 됨
   },
   "include": ["src"],
   "exclude": ["node_modules"]
