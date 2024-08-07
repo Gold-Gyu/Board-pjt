@@ -1,5 +1,5 @@
 // import App from '@/App';
-import HomePage from '@/pages/HomePage';
+import HomePage from '@/pages/Homepage/HomePage';
 import MyPage from '@/pages/MyPage';
 import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
 import ErrorPage from '@/pages/ErrorPage';

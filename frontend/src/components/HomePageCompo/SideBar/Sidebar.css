@@ -1,0 +1,66 @@
+.sidebar {
+  width: 200px;
+
+  padding: 20px;
+}
+
+.sidebar nav ul {
+  list-style: none;
+  padding: 0;
+}
+
+.sidebar nav ul li {
+  margin-bottom: 10px;
+}
+
+.cafe-post {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid blue;
+  border-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: whitesmoke;
+  background-color: blue;
+}
+
+.cafe-chat {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 2px solid blue;
+  border-color: blue;
+  padding: 10px;
+  border-radius: 5px;
+  font-weight: bold;
+  color: blue;
+
+}
+
+.cafe-button {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.user-info {
+  margin-bottom: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+
+.user-info-flame {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.info-container {
+  padding: 10px 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

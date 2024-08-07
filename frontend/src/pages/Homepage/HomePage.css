@@ -1,0 +1,27 @@
+.homepage {
+  display: flex;
+  flex-direction: column;
+}
+
+.latest-posts, .popular-posts, .announcements {
+  margin-bottom: 20px;
+}
+
+.posts, .announcements-list {
+  display: flex;
+  flex-direction: column;
+}
+
+.posts > div, .announcements-list > div {
+  margin-bottom: 10px;
+  padding: 10px;
+  border: 1px solid #ddd;
+  border-radius: 5px;
+}
+
+.table-container {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

@@ -1,0 +1,27 @@
+.app {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+  max-width: 1000px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  width: 100%; /* 전체 너비 사용 */
+}
+
+.container {
+  display: flex;
+  flex: 1;
+  max-width: 1000px; /* 최대 너비 설정 */
+  margin: 0 auto; /* 가운데 정렬 */
+  width: 100%; /* 전체 너비 사용 */
+}
+
+.sidebar {
+  width: 200px;
+  background-color: #F5F7FA;
+}
+
+.content {
+  flex: 1;
+  padding: 20px;
+  background-color: #F5F7FA;
+}
