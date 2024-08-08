@@ -1,6 +1,6 @@
 import React from 'react';
 import './HomePage.css';
-import Board from '@/components/HomePageCompo/Board/Board';
+import Board from '@/components/HomePageCompo/BoardIntro/BoardIntro';
 
 const HomePage = () => {
   return (

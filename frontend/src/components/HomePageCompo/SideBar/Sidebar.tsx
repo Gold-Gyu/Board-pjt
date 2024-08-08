@@ -2,6 +2,8 @@ import React from 'react';
 import './Sidebar.css';
 import Profile from '../Profile/Profile';
 
+
+
 const Sidebar = () => {
   const isLoggedIn = true; // 예시로 로그인 여부를 true로 설정
   const username = 'John Doe'; // 예시 사용자 이름
@@ -14,6 +16,7 @@ const Sidebar = () => {
     <aside className="sidebar">
       <div className="info-container">
         <div>
+          <hr />
           <Profile
             isLoggedIn={isLoggedIn}
             username={username}
@@ -22,6 +25,7 @@ const Sidebar = () => {
             signupDate={signupDate}
             introduce={introduce}
           />
+          <hr />
         </div>
         {/* 회원이 활동한 정보 모듈화 하기! */}
         <div className="user-info">

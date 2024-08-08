@@ -1,7 +1,13 @@
 // import App from '@/App';
 import HomePage from '@/pages/Homepage/HomePage';
-import MyPage from '@/pages/MyPage';
-import { BrowserRouter, Route, Routes, Navigate } from 'react-router-dom';
+import MyPage from '@/pages/MyPage/MyPage';
+import {
+  BrowserRouter,
+  Route,
+  Routes,
+  Navigate,
+  Router,
+} from 'react-router-dom';
 import ErrorPage from '@/pages/ErrorPage';
 
 const AppRouter = () => {

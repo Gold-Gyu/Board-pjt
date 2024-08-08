@@ -52,3 +52,46 @@
   outline: none;
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
+
+.board-header,
+.board-row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 10px;
+  border-bottom: 1px solid #ddd;
+}
+
+.board-header {
+  background-color: #f9f9f9;
+  font-weight: bold;
+}
+
+.board-header-item,
+.board-item {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.title-header {
+  flex: 20;
+  text-align: left;
+}
+
+.author-header,
+.date-header,
+.views-header {
+  flex: 4;
+}
+
+.title {
+  display: flex;
+  justify-self: start;
+  flex: 20;
+}
+
+.article-count {
+  padding: 10px;
+}

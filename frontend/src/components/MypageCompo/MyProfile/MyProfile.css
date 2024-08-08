@@ -1,0 +1,66 @@
+.profile-box {
+  display: flex;
+  justify-content: start;
+  align-items: center;
+}
+
+.logged-in-box {
+  display: flex;
+  align-items: center;
+}
+
+.profile-image-box {
+  width: 100px;
+  height: 100px;
+  border-radius: 50%;
+  margin-right: 10px;
+}
+
+.username-box {
+  font-size: 20px;
+  font-weight: bold;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.rated-boxed {
+  font-size: 15px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border: 1px solid #ccc; /* 테두리 색상 */
+  border-radius: 5px; /* 모서리 둥글게 */
+  padding: 2px 5px; /* 여백 */
+  background-color: #f0f0f0; /* 배경색 */
+  color: #333; /* 텍스트 색상 */
+}
+
+.login-link {
+  color: white;
+  text-decoration: none;
+}
+
+.username-rated-box {
+  display: flex;
+  gap: 3px;
+}
+
+.introduce-box {
+  margin-top: 10px;
+  font-size: 20px;
+}
+.info-box {
+  gap: 10px;
+}
+
+.signup-date-box {
+  font-size: 15px;
+}
+
+.backround-box {
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

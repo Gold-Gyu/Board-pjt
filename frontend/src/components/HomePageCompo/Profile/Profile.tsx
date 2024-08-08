@@ -1,11 +1,12 @@
 import React from 'react';
 import './Profile.css';
-
+import '@/hooks/useMovePage';
+import { useNavigate } from 'react-router-dom';
 interface ProfileProps {
   isLoggedIn: boolean;
   username: string;
-  profileImage?: string;
-  signupDate: string
+  profileImage: string;
+  signupDate: string;
   rated: string;
   introduce: string;
 }
@@ -16,15 +17,23 @@ const Profile: React.FC<ProfileProps> = ({
   profileImage,
   rated,
   introduce,
-  signupDate
+  signupDate,
 }) => {
+  const navigate = useNavigate();
+  const movePage = () => {
+    navigate('/mypage');
+  };
   return (
     <div className="profile">
       {isLoggedIn ? (
         <div>
-          <hr />
           <div className="logged-in">
-            <img src={profileImage} alt="Profile" className="profile-image" />
+            <img
+              src={profileImage}
+              alt="Profile"
+              className="profile-image"
+              // onClick={movePage}
+            />
             <div className="info">
               <div className="username-rated">
                 <div className="username">
@@ -38,7 +47,6 @@ const Profile: React.FC<ProfileProps> = ({
               <div className="introduce">{introduce}</div>
             </div>
           </div>
-          <hr />
         </div>
       ) : (
         <a href="/login" className="login-link">
