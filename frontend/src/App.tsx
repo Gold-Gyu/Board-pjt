@@ -6,15 +6,7 @@ import './styles/App.css';
 function App() {
   return (
     <>
-      <div className="app">
-        <Navbar />
-        <div className="container">
-          <Sidebar />
-          <div className="content">
-            <AppRouter />
-          </div>
-        </div>
-      </div>
+      <AppRouter />
     </>
   );
 }
