@@ -8,8 +8,10 @@ const CreateArticleBoard = () => {
       <div className="create-article-board">
         <div>게시글 셍상폼</div>
         <div className="create-article-button-box">
-          <button>게시하기</button>
-          <button>취소하기</button>
+          <div>
+            <button>게시하기</button>
+            <button>취소하기</button>
+          </div>
         </div>
       </div>
     </div>
