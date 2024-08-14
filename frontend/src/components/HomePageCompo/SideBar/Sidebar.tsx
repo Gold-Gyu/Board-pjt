@@ -1,8 +1,8 @@
 import React from 'react';
 import './Sidebar.css';
 import Profile from '../Profile/Profile';
-
-
+import { useNavigate } from 'react-router-dom';
+import useMovePage from '@/hooks/useMovePage';
 
 const Sidebar = () => {
   const isLoggedIn = true; // 예시로 로그인 여부를 true로 설정
@@ -11,7 +11,8 @@ const Sidebar = () => {
   const rated = '매니저';
   const signupDate = '2024-07-30';
   const introduce = 'Good Morning';
-
+  // const navigate = useNavigate();
+  const { movePage } = useMovePage();
   return (
     <aside className="sidebar">
       <div className="info-container">
@@ -29,25 +30,25 @@ const Sidebar = () => {
         </div>
         {/* 회원이 활동한 정보 모듈화 하기! */}
         <div className="user-info">
-          <div className='user-info-flame'>
+          <div className="user-info-flame">
             <div>등급</div>
             <div>{rated}</div>
           </div>
-          <div className='user-info-flame'>
+          <div className="user-info-flame">
             <div>방문회수</div>
             <div>5회</div>
           </div>
-          <div className='user-info-flame'>
+          <div className="user-info-flame">
             <div>게시글 작성수</div>
             <div>10개</div>
           </div>
-          <div className='user-info-flame'>
+          <div className="user-info-flame">
             <div>댓글 수</div>
             <div>20개</div>
           </div>
         </div>
         <div className="cafe-button">
-          <div className="cafe-post">게시판 글쓰기</div>
+          <div className="cafe-post" onClick={(() => movePage('/create-article', null))}>게시판 글쓰기</div>
           <div className="cafe-chat">게시판 채팅</div>
         </div>
         <nav>
