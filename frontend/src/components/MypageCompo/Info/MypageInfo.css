@@ -4,3 +4,25 @@
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
 }
+
+.mypage-part {
+  display: flex;
+  gap: 20px; /* 탭 사이 간격 */
+}
+
+.tab {
+  padding: 10px;
+  cursor: pointer;
+  color: gray; /* 비활성화된 탭 색상 */
+  border-bottom: 2px solid transparent; /* 기본 상태에서 밑줄 제거 */
+  transition: color 0.3s ease, border-bottom 0.3s ease;
+}
+
+.tab.active {
+  color: blue; /* 활성화된 탭 색상 */
+  border-bottom: 2px solid blue; /* 활성화된 탭 밑줄 색상 */
+}
+
+.tab:hover {
+  color: #555; /* 탭에 마우스를 올렸을 때 색상 변경 */
+}
