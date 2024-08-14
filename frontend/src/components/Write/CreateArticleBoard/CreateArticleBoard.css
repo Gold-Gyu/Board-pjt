@@ -57,3 +57,58 @@
 .create-article-button-box button:hover {
   opacity: 0.9;
 }
+
+/* modal */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  z-index: 1000;
+}
+
+.modal-content {
+  background-color: white;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  z-index: 1001;
+}
+
+/* 공통 스타일 */
+.modal-content button {
+  padding: 10px 20px;
+  margin: 5px;
+  border: none;
+  border-radius: 5px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+
+/* 네 버튼 스타일 */
+.modal-content button:first-child {
+  background-color: #4caf50; /* 녹색 */
+  color: white;
+}
+
+.modal-content button:first-child:hover {
+  background-color: #45a049; /* 약간 어두운 녹색 */
+  transform: scale(1.05); /* 호버 시 약간 커짐 */
+}
+
+/* 아니요 버튼 스타일 */
+.modal-content button:last-child {
+  background-color: #f44336; /* 빨간색 */
+  color: white;
+}
+
+.modal-content button:last-child:hover {
+  background-color: #e53935; /* 약간 어두운 빨간색 */
+  transform: scale(1.05); /* 호버 시 약간 커짐 */
+}

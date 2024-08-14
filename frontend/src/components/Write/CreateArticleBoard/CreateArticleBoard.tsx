@@ -2,16 +2,19 @@ import React, { useMemo, useRef, useState } from 'react';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './CreateArticleBoard.css';
+import useMovePage from '@/hooks/useMovePage';
 
 const CreateArticleBoard = () => {
+  const { movePage } = useMovePage();
   const [title, setTitle] = useState('');
   const [content, setContent] = useState('');
   const [category, setCategory] = useState('');
   const [image, setImage] = useState(null);
   const [plainText, setPlainText] = useState('');
+  const [showModal, setShowModal] = useState(false);
   const maxTitleLength = 100;
 
-  const quillRef = useRef<ReactQuill | null>(null);
+  // const quillRef = useRef<ReactQuill | null>(null);
 
   // const handleImageUpload = () => {
   //   const input = document.createElement('input');
@@ -42,7 +45,7 @@ const CreateArticleBoard = () => {
         container: [
           [{ header: [1, 2, 3, 4, 5, false] }],
           ['bold', 'italic', 'underline', 'strike', 'blockquote'],
-          ['image'],
+          ['image', 'code-block'],
         ],
         handlers: {
           // image: handleImageUpload,
@@ -79,9 +82,24 @@ const CreateArticleBoard = () => {
     console.log({ title, content, category, image });
   };
 
+  const handleCancelClick = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirmCancel = () => {
+    // Cancel
+    console.log('취소합니다.');
+    setShowModal(false);
+    movePage('/', null);
+  };
+
   return (
     <div className="table-container">
-      <h1>게시글 작성하기</h1>
+      <h1>게시글 작성</h1>
       <form onSubmit={handleSubmit} className="create-article-board">
         <div className="form-group">
           <input
@@ -128,11 +146,20 @@ const CreateArticleBoard = () => {
         </div> */}
         <div className="create-article-button-box">
           <button type="submit">게시하기</button>
-          <button type="button" onClick={() => console.log('취소')}>
+          <button type="button" onClick={handleCancelClick}>
             취소하기
           </button>
         </div>
       </form>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>진짜 취소하겠습니까?</p>
+            <button onClick={handleConfirmCancel}>Yes</button>
+            <button onClick={handleCloseModal}>No</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
