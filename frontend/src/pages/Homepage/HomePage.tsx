@@ -5,7 +5,7 @@ import Board from '@/components/HomePageCompo/BoardIntro/BoardIntro';
 const HomePage = () => {
   return (
     <div className="homepage">
-      <Board />
+      <Board category={'전체게시글'} />
     </div>
   );
 };
