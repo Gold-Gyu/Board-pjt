@@ -11,6 +11,8 @@ import {
 import ErrorPage from '@/pages/ErrorPage';
 import Navbar from '@/components/HomePageCompo/NavBar/Navbar';
 import Sidebar from '@/components/HomePageCompo/SideBar/Sidebar';
+import path from 'path';
+import CreateArticlePage from '@/pages/CreateArticlePage/CreateArticlePage';
 
 const AppRouter = () => {
   return (
@@ -25,6 +27,9 @@ const AppRouter = () => {
               <Route path="/mypage" element={<MyPage />} />
               <Route path="*" element={<Navigate replace to="/error" />} />
               <Route path="/error" element={<ErrorPage />} />
+              <Route path="/create-article" element={<CreateArticlePage /> } />
+              {/* <Route path="/article" element={<CreateArticlePage /> } /> */}
+
             </Routes>
           </div>
         </div>
