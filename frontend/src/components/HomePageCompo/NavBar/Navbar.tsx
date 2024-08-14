@@ -12,6 +12,7 @@ const Navbar = () => {
         className="logo"
         onClick={() => {
           movePage('/', null);
+          location.reload();
         }}
       >
         GOLDGYU'S Board
