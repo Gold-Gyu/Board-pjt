@@ -1,7 +1,6 @@
-import React from 'react';
+import React, { useState } from 'react';
 import './Sidebar.css';
 import Profile from '../Profile/Profile';
-import { useNavigate } from 'react-router-dom';
 import useMovePage from '@/hooks/useMovePage';
 
 const Sidebar = () => {
@@ -11,12 +10,30 @@ const Sidebar = () => {
   const rated = '매니저';
   const signupDate = '2024-07-30';
   const introduce = 'Good Morning';
-  // const navigate = useNavigate();
+  const [showModal, setShowModal] = useState(false);
+  const handleCancelClick = () => {
+    setShowModal(true);
+  };
+
+  const handleCloseModal = () => {
+    setShowModal(false);
+  };
+
+  const handleConfirmCancel = () => {
+    // Cancel
+    console.log('확인합니다.');
+    setShowModal(false);
+    movePage('/', null);
+  };
   const { movePage } = useMovePage();
   return (
     <aside className="sidebar">
       <div className="info-container">
-        <div>
+        <div
+          onClick={() => {
+            movePage('mypage', null);
+          }}
+        >
           <hr />
           <Profile
             isLoggedIn={isLoggedIn}
@@ -48,16 +65,32 @@ const Sidebar = () => {
           </div>
         </div>
         <div className="cafe-button">
-          <div className="cafe-post" onClick={(() => movePage('/create-article', null))}>게시판 글쓰기</div>
-          <div className="cafe-chat">게시판 채팅</div>
+          <div
+            className="cafe-post"
+            onClick={() => movePage('/create-article', null)}
+          >
+            게시판 글쓰기
+          </div>
+          <div className="cafe-chat" onClick={handleCancelClick}>게시판 채팅</div>
         </div>
         <nav>
           <ul>
-            <li>즐겨찾는 게시판</li>
-            <li>전체글보기</li>
+            <li onClick={() => movePage('/', null)}>전체 게시판</li>
+            <li onClick={() => movePage('/notice', null)}>공지사항</li>
+            <li onClick={() => movePage('/free-article', null)}>자유게시판</li>
+            <li onClick={() => movePage('/qna-article', null)}>질문게시판</li>
           </ul>
         </nav>
       </div>
+      {showModal && (
+        <div className="modal-overlay">
+          <div className="modal-content">
+            <p>서비스 준비중입니다.</p>
+            <button onClick={handleConfirmCancel}>확인</button>
+            
+          </div>
+        </div>
+      )}
     </aside>
   );
 };

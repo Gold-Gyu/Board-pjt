@@ -1,6 +1,5 @@
 .sidebar {
   width: 200px;
-
   padding: 20px;
 }
 
@@ -9,9 +8,9 @@
   padding: 0;
 }
 
-.sidebar nav ul li {
+/* .sidebar nav ul li {
   margin-bottom: 10px;
-}
+} */
 
 .cafe-post {
   display: flex;
@@ -24,6 +23,7 @@
   font-weight: bold;
   color: whitesmoke;
   background-color: blue;
+  cursor: pointer;
 }
 
 .cafe-chat {
@@ -36,7 +36,7 @@
   border-radius: 5px;
   font-weight: bold;
   color: blue;
-
+  cursor: pointer;
 }
 
 .cafe-post:hover {
@@ -65,7 +65,6 @@
   box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
 }
 
-
 .cafe-button {
   display: flex;
   flex-direction: column;
@@ -90,4 +89,41 @@
   background-color: #f8f9fa;
   border-radius: 10px;
   box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+/* 네비게이션 스타일 */
+nav {
+  margin-top: 20px;
+}
+
+/* 리스트 스타일 */
+nav ul {
+  list-style: none;
+  margin: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 3px; /* 항목 간격 */
+}
+
+/* 리스트 아이템 스타일 */
+nav ul li {
+  padding: 11px 10px;
+  border-radius: 8px;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  cursor: pointer;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 호버 효과 */
+nav ul li:hover {
+  background-color: #e9ecef;
+  transform: translateY(-2px);
+}
+
+/* 활성화된 리스트 아이템 스타일 */
+nav ul li.active {
+  background-color: #007bff;
+  color: white;
+  transform: translateY(-2px);
 }
