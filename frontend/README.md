@@ -1,30 +1,19 @@
-# React + TypeScript + Vite
+# 프론트엔드 개발 로그
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
-Currently, two official plugins are available:
+### 본격 프론트엔드 1일차 [2024-08-14 수요일]
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+1. 게시글 작성 폼 제작 시작 (70%)
+2. 전체게시판, 자유게시판, 질문게시판 목록 생성
+3. 마이페이지 제작 (30%)
+4. 게시글 조회 구현
 
-## Expanding the ESLint configuration
+> 한줄 소감
+> >오랜만에 프론트엔드를 다뤄봐서 정말 어려웠다. 깃헙을 찾아보고 계속해보니 어느정도 다시 감을 찾은 것 같다... router부터 시작해서 다시 차근차근 공부해야징
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
-
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default {
-  // other rules...
-  parserOptions: {
-    ecmaVersion: 'latest',
-    sourceType: 'module',
-    project: ['./tsconfig.json', './tsconfig.node.json', './tsconfig.app.json'],
-    tsconfigRootDir: __dirname,
-  },
-}
-```
-
-- Replace `plugin:@typescript-eslint/recommended` to `plugin:@typescript-eslint/recommended-type-checked` or `plugin:@typescript-eslint/strict-type-checked`
-- Optionally add `plugin:@typescript-eslint/stylistic-type-checked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and add `plugin:react/recommended` & `plugin:react/jsx-runtime` to the `extends` list
+##### have to do list
+1. image파일을 어떻게 최적화해서 저장할 것인지 고민
+2. 페이지 이동 흐름 명확화
+3. 마이페이지 제작
+4. useMemo, useRef, useEffect 등 다시 정리
+5. 로그인 및 회원가입 폼 제작 필요
