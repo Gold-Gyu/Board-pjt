@@ -16,7 +16,6 @@
   align-items: center;
 }
 .search-bar {
-
   max-width: 200px;
   width: 100%; /* 원하는 고정 길이 */
   padding: 10px;
@@ -87,11 +86,47 @@
 }
 
 .title {
+  flex: 20; /* flex 비율 유지 */
+  position: relative;
   display: flex;
-  justify-self: start;
-  flex: 20;
+  align-items: center;
+}
+
+.title-text {
+  display: inline-block;
+  text-decoration: none; /* 기본 밑줄 제거 */
+  position: relative;
+}
+
+.title-text::after {
+  content: '';
+  display: block;
+  width: 0;
+  height: 2px;
+  background-color: black; /* 밑줄 색상 */
+  position: absolute;
+  bottom: -2px;
+  left: 0;
+  /* transition: width 0.3s ease; 밑줄 애니메이션 */
+}
+
+.title:hover .title-text::after {
+  width: 100%; /* hover 시 밑줄이 텍스트 길이만큼 채워지게 */
 }
 
 .article-count {
   padding: 10px;
+}
+
+.no-posts {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px; /* 메시지 박스의 높이 */
+  font-size: 18px; /* 텍스트 크기 */
+  color: #555; /* 텍스트 색상 */
+  background-color: #f8f9fa; /* 배경색 */
+  border: 1px solid #ddd; /* 테두리 색상 */
+  border-radius: 8px; /* 둥근 테두리 */
+  margin-top: 20px; /* 위쪽 여백 */
 }
