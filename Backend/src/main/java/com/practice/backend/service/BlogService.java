@@ -1,6 +1,6 @@
 package com.practice.backend.service;
 
-import com.practice.backend.Article;
+import com.practice.backend.entity.Article;
 import com.practice.backend.dto.AddArticleRequest;
 import com.practice.backend.repository.BlogRepository;
 import lombok.RequiredArgsConstructor;
