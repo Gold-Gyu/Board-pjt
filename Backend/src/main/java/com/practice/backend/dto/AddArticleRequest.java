@@ -6,6 +6,7 @@ import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 
 @NoArgsConstructor // 기본 생성자
@@ -16,8 +17,8 @@ public class AddArticleRequest {
     private String title;
     private String content;
     private Category category;
-    private String author;
-//    private Date publishDate;
+    private long authorId;
+    private LocalDateTime publishDate;
     private int likeCount;
     private int commentCount;
 
@@ -26,9 +27,10 @@ public class AddArticleRequest {
                 .title(title)
                 .content(content)
                 .category(category)
-                .author(author)
+                .authorId(authorId)
                 .likeCount(likeCount)
                 .commentCount(commentCount)
+                .publishDate(publishDate)
                 .build();
     }
 }
