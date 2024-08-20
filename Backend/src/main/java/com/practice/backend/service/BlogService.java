@@ -18,8 +18,6 @@ import java.util.List;
 @Service // 빈으로 추가
 public class BlogService {
     private final BlogRepository blogRepository;
-    // 비즈니스 로직 구현
-    //
     // 블로그 글 추가 메서드
     public Article save(AddArticleRequest request) {
         return blogRepository.save(request.toEntity());
