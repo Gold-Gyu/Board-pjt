@@ -17,3 +17,10 @@
 3. 마이페이지 제작
 4. useMemo, useRef, useEffect 등 다시 정리
 5. 로그인 및 회원가입 폼 제작 필요
+
+
+### 2일차
+1. useEffect, useMemo, useParams 사용법
+2. async await
+3. axios 인스턴스
+4. 백엔드 데이터 연결
