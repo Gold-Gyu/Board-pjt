@@ -26,13 +26,16 @@ public class Article {
     @Column(name="title", nullable = false)
     private String title;
 
-    @Column(name="content", nullable = false)
+    @Column(name="content", nullable = false, columnDefinition = "TEXT")
     private String content;
 
-    @Column(name="author", nullable = false)
+    @Column(name="authorId", nullable = false)
     private long authorId;
 
-    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd'T'HH:mm:ss")
+    @Column(name="author", nullable = false)
+    private String author;
+
+    @JsonFormat(shape = JsonFormat.Shape.STRING, pattern = "yyyy-MM-dd HH:mm:ss")
     @Column(name="publishDate", nullable = false)
     private LocalDateTime publishDate;
 
@@ -42,13 +45,18 @@ public class Article {
     @Column(name="commentCount", nullable = true)
     private Integer commentCount = 0;
 
+    @Column(name="views", nullable = true)
+    private Integer views = 0;
+
     @Builder
-    public Article(String title, String content, long authorId, Category category, LocalDateTime publishDate, int likeCount, int commentCount) {
+    public Article(String title, String content, String author, long authorId, Category category, int views, LocalDateTime publishDate, int likeCount, int commentCount) {
         this.title = title;
         this.content = content;
         this.category = category;
+        this.author = author;
         this.authorId = authorId;
         this.publishDate = LocalDateTime.now();
+        this.views = views;
         this.likeCount = likeCount;
         this.commentCount = commentCount;
     }
