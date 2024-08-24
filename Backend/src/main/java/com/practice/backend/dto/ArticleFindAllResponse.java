@@ -12,11 +12,13 @@ public class ArticleFindAllResponse {
     private long BoardId;
     private String title;
     private String content;
+    private String author;
     private Category category;
-    private long author;
+    private long authorId;
     private String publishDate;
     private int likeCount;
     private int commentCount;
+    private int views;
 
     private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
@@ -24,8 +26,10 @@ public class ArticleFindAllResponse {
         this.BoardId = article.getId();
         this.title = article.getTitle();
         this.content = article.getContent();
+        this.author = article.getAuthor();
         this.category = article.getCategory();
-        this.author = article.getAuthorId();
+        this.authorId = article.getAuthorId();
+        this.views = article.getViews();
         this.likeCount = article.getLikeCount();
         this.commentCount = article.getCommentCount();
         this.publishDate = article.getPublishDate().format(formatter);
