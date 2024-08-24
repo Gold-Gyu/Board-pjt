@@ -3,6 +3,8 @@ import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 import './CreateArticleBoard.css';
 import useMovePage from '@/hooks/useMovePage';
+import instance from '@/apis/instance';
+
 
 const CreateArticleBoard = () => {
   const { movePage } = useMovePage();
@@ -14,6 +16,25 @@ const CreateArticleBoard = () => {
   const [showModal, setShowModal] = useState(false);
   const maxTitleLength = 100;
 
+
+  const postingArticle = async() => {
+    const data = {
+      title : title,
+      content: content,
+      category: category,
+      author: '관리자',
+      authorId: 1,
+    }
+    try {
+      const response = await instance.post('', data);
+      movePage('/', null)
+      
+    } catch {
+      console.log("error");
+      
+    }
+    
+  }
   // const quillRef = useRef<ReactQuill | null>(null);
 
   // const handleImageUpload = () => {
@@ -123,9 +144,9 @@ const CreateArticleBoard = () => {
             required
           >
             <option value="">카테고리 선택</option>
-            <option value="공지사항">공지사항</option>
-            <option value="자유게시판">자유게시판</option>
-            <option value="질문게시판">질문게시판</option>
+            <option value="NOTICE">공지사항</option>
+            <option value="FREE_BOARD">자유게시판</option>
+            <option value="QUESTION_BOARD">질문게시판</option>
           </select>
         </div>
         <div className="form-group">
@@ -145,7 +166,7 @@ const CreateArticleBoard = () => {
           <input type="file" id="image" onChange={handleImageChange} />
         </div> */}
         <div className="create-article-button-box">
-          <button type="submit">게시하기</button>
+          <button type="submit" onClick={postingArticle}>게시하기</button>
           <button type="button" onClick={handleCancelClick}>
             취소하기
           </button>
@@ -165,6 +186,3 @@ const CreateArticleBoard = () => {
 };
 
 export default CreateArticleBoard;
-function setPlainText(arg0: string) {
-  throw new Error('Function not implemented.');
-}
