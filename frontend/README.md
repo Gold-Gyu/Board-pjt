@@ -24,3 +24,4 @@
 2. async await
 3. axios 인스턴스
 4. 백엔드 데이터 연결
+5. Promise.all을 통해 api 병렬적 처리 가능
