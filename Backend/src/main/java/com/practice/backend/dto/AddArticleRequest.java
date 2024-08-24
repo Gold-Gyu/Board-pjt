@@ -17,17 +17,21 @@ public class AddArticleRequest {
     private String title;
     private String content;
     private Category category;
+    private String author;
     private long authorId;
     private LocalDateTime publishDate;
     private int likeCount;
     private int commentCount;
+    private int views;
 
     public Article toEntity() {
         return Article.builder()
                 .title(title)
                 .content(content)
+                .author(author)
                 .category(category)
                 .authorId(authorId)
+                .views(views)
                 .likeCount(likeCount)
                 .commentCount(commentCount)
                 .publishDate(publishDate)
