@@ -8,12 +8,7 @@ interface PagenationProps {
   onPageChange: (pageNumber: number) => void;
 }
 
-const Pagenation: React.FC<PagenationProps> = ({
-  totalItems,
-  itemsPerPage,
-  currentPage,
-  onPageChange,
-}) => {
+const Pagenation = ({ totalItems, itemsPerPage, currentPage, onPageChange }: PagenationProps) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handleClick = (pageNumber: number) => {
