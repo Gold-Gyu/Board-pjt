@@ -2,63 +2,12 @@
   padding: 20px;
   background-color: #f8f9fa;
   border-radius: 10px;
-  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
 }
 
-.board-box-ariticle {
-  display: flex;
-  gap: 5px;
-}
-
-.board-header-box {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-.search-bar {
-  max-width: 200px;
-  width: 100%; /* 원하는 고정 길이 */
-  padding: 10px;
-  font-size: 16px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.search-box {
-  display: flex;
-}
-
-.search-button {
-  padding: 10px 10px;
-  font-size: 16px;
-  color: white;
-  background-color: #007bff;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.search-button:hover {
-  background-color: #0056b3;
-}
-
-.search-button:active {
-  background-color: #004085;
-}
-
-.search-button:focus {
-  outline: none;
-  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25);
-}
-
-.board-header,
-.board-row {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  padding: 10px;
-  border-bottom: 1px solid #ddd;
+.board-table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 .board-header {
@@ -66,52 +15,45 @@
   font-weight: bold;
 }
 
-.board-header-item,
-.board-item {
-  display: flex;
-  justify-content: center;
-  align-items: center;
+.board-header-item {
+  padding: 15px 10px;
   text-align: center;
+  font-size: 16px;
+  border-bottom: 2px solid #ececec;
 }
 
-.title-header {
-  flex: 20;
+/* .title-header {
   text-align: left;
+  padding-left: 10px;
+} */
+
+.board-row {
+  cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.author-header,
-.date-header,
-.views-header {
-  flex: 4;
+.board-row:hover {
+  background-color: #f4f4f4;
+}
+
+.board-row td {
+  padding: 15px 10px;
+  border-bottom: 1px solid #ececec;
+  /* text-align: left; */
 }
 
 .title {
-  flex: 20; /* flex 비율 유지 */
-  position: relative;
-  display: flex;
-  align-items: center;
+  text-align: left;
 }
 
 .title-text {
-  display: inline-block;
-  text-decoration: none; /* 기본 밑줄 제거 */
-  position: relative;
+  color: #007bff;
+  font-weight: 600;
+  transition: color 0.3s ease;
 }
 
-.title-text::after {
-  content: '';
-  display: block;
-  width: 0;
-  height: 2px;
-  background-color: black; /* 밑줄 색상 */
-  position: absolute;
-  bottom: -2px;
-  left: 0;
-  /* transition: width 0.3s ease; 밑줄 애니메이션 */
-}
-
-.title:hover .title-text::after {
-  width: 100%; /* hover 시 밑줄이 텍스트 길이만큼 채워지게 */
+.title-text:hover {
+  color: #0056b3;
 }
 
 .article-count {
