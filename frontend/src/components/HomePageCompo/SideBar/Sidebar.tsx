@@ -23,7 +23,7 @@ const Sidebar = () => {
     // Cancel
     console.log('확인합니다.');
     setShowModal(false);
-    movePage('/', null);
+    movePage('/home', null);
   };
   const { movePage } = useMovePage();
   return (
@@ -75,7 +75,7 @@ const Sidebar = () => {
         </div>
         <nav>
           <ul>
-            <li onClick={() => movePage('/', null)}>전체 게시판</li>
+            <li onClick={() => movePage('/home', null)}>전체 게시판</li>
             <li onClick={() => movePage('/notice', null)}>공지사항</li>
             <li onClick={() => movePage('/free-article', null)}>자유게시판</li>
             <li onClick={() => movePage('/qna-article', null)}>질문게시판</li>
