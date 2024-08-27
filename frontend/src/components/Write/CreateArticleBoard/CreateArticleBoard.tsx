@@ -27,7 +27,7 @@ const CreateArticleBoard = () => {
     }
     try {
       const response = await instance.post('', data);
-      movePage('/', null)
+      movePage('/home', null)
       
     } catch {
       console.log("error");
@@ -115,7 +115,7 @@ const CreateArticleBoard = () => {
     // Cancel
     console.log('취소합니다.');
     setShowModal(false);
-    movePage('/', null);
+    movePage('/home', null);
   };
 
   return (
@@ -166,7 +166,7 @@ const CreateArticleBoard = () => {
           <input type="file" id="image" onChange={handleImageChange} />
         </div> */}
         <div className="create-article-button-box">
-          <button type="submit" onClick={postingArticle}>게시하기</button>
+          <button onClick={postingArticle}>게시하기</button>
           <button type="button" onClick={handleCancelClick}>
             취소하기
           </button>
