@@ -1,0 +1,99 @@
+.signup-layout-box {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.signup-outer-box {
+  width: 300px;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.signup-box {
+  display: flex;
+  flex-direction: column;
+}
+
+.signup-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.form-group {
+  margin-bottom: 15px;
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+.form-group input {
+  width: 100%;
+  padding: 8px;
+  box-sizing: border-box;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+
+.email-group .email-input-group,
+.verification-group .verification-input-group {
+  display: flex;
+  align-items: center;
+}
+
+.email-group .email-input-group input,
+.verification-group .verification-input-group input {
+  flex: 1;
+  margin-right: 10px;
+}
+
+button {
+  padding: 10px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+.password-match {
+  border-color: green;
+}
+
+.password-mismatch {
+  border-color: red;
+}
+
+.success-message {
+  color: green;
+  margin-top: 5px;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+}
+
+.error-message {
+  color: red;
+  margin-top: 5px;
+  font-size: 12px;
+}
+
+.checkmark {
+  font-size: 16px;
+  margin-right: 5px;
+}
+
+button[type='submit'] {
+  width: 100%;
+}
