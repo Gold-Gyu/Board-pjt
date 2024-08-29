@@ -16,6 +16,15 @@ const MyPage = () => {
           profileImage="/src/assets/react.svg"
         />
         <MypageInfo />
+        <div>
+          좋아요 한 글
+        </div>
+        <div>
+          팔로워
+        </div>
+        <div>
+          팔로잉
+        </div>
       </div>
     </div>
   );
