@@ -24,7 +24,7 @@ const Board = ({ category }: { category: string }) => {
       try {
         const response = await instance.get('');
         setGetArticleData(response.data);
-        console.log(response.data);
+        console.log(response);
       } catch {
         console.log('실패');
       }
@@ -35,7 +35,9 @@ const Board = ({ category }: { category: string }) => {
   // 현재 페이지에 표시할 게시글 데이터 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = getArticleData.slice(indexOfFirstItem, indexOfLastItem);
+  const currentItems = Array.isArray(getArticleData)
+    ? getArticleData.slice(indexOfFirstItem, indexOfLastItem)
+    : [];
 
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
