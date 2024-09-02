@@ -9,6 +9,7 @@ import instance from '@/apis/instance';
 const ArticlePage = () => {
   const params = useParams();
   const [article, setArticle] = useState<Article | null>(null);
+  const [comment, setComment] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -24,10 +25,15 @@ const ArticlePage = () => {
     }
   }, [params.spid]);
 
-  // const location = useLocation();
-  // console.log(location);
+  const handleCommentChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
+    setComment(e.target.value);
+  };
 
-  // const post = location.state;
+  const handleCommentSubmit = () => {
+    console.log(comment);
+    setComment('');
+  };
+
   const { goBack } = useMovePage();
   return (
     <div>
@@ -41,13 +47,24 @@ const ArticlePage = () => {
               <p>작성일: {article.publishDate}</p>
               <p>조회수: {article.views}</p>
             </div>
-            <div className="article-page">
-              <button className="blue-button" onClick={() => goBack()}>
-                뒤로가기
+
+            <div className="comment-section" style={{ marginTop: '30px', padding: '20px', border: '1px solid #ddd', borderRadius: '10px', backgroundColor: '#f9f9f9' }}>
+              <h2 style={{ marginBottom: '20px' }}>댓글창</h2>
+              <textarea
+                className="comment-input"
+                value={comment}
+                onChange={handleCommentChange}
+                placeholder="댓글을 작성하세요"
+                style={{ width: '100%', height: '100px', padding: '10px', borderRadius: '5px', border: '1px solid #ccc', marginBottom: '10px', resize: 'none', backgroundColor: '#fff' }}
+              />
+              <button className="submit-button" onClick={handleCommentSubmit} style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#007bff', color: '#fff', cursor: 'pointer' }}>
+                댓글 작성
               </button>
-            </div>
-            <div className="table-container" style={{ marginTop: '30px' }}>
-              <div>댓글창</div>
+              <div className="article-page" style={{ marginTop: '20px' }}>
+                <button className="blue-button" onClick={() => goBack()} style={{ padding: '10px 20px', borderRadius: '5px', border: 'none', backgroundColor: '#6c757d', color: '#fff', cursor: 'pointer' }}>
+                  뒤로가기
+                </button>
+              </div>
             </div>
           </div>
         ) : (
