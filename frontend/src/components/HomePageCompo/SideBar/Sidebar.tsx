@@ -1,7 +1,9 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import './Sidebar.css';
 import Profile from '../Profile/Profile';
 import useMovePage from '@/hooks/useMovePage';
+import instance from '@/apis/instance';
+import { Article } from '@/types/Article';
 
 const Sidebar = () => {
   const isLoggedIn = true; // 예시로 로그인 여부를 true로 설정
@@ -11,6 +13,10 @@ const Sidebar = () => {
   const signupDate = '2024-07-30';
   const introduce = 'Good Morning';
   const [showModal, setShowModal] = useState(false);
+
+  // 서버 데이터 받아오기
+  
+
   const handleCancelClick = () => {
     setShowModal(true);
   };
@@ -20,10 +26,9 @@ const Sidebar = () => {
   };
 
   const handleConfirmCancel = () => {
-    // Cancel
     console.log('확인합니다.');
     setShowModal(false);
-    movePage('/home', null);
+    movePage('/home', 'QUESTION_BOARD');
   };
   const { movePage } = useMovePage();
   return (
@@ -31,7 +36,7 @@ const Sidebar = () => {
       <div className="info-container">
         <div
           onClick={() => {
-            movePage('mypage', null);
+            movePage('/mypage', null);
           }}
         >
           <hr />
@@ -67,7 +72,7 @@ const Sidebar = () => {
         <div className="cafe-button">
           <div
             className="cafe-post"
-            onClick={() => movePage('/create-article', null)}
+            onClick={() => movePage('/create-article', 'QUESTION_BOARD')}
           >
             게시판 글쓰기
           </div>
@@ -76,9 +81,9 @@ const Sidebar = () => {
         <nav>
           <ul>
             <li onClick={() => movePage('/home', null)}>전체 게시판</li>
-            <li onClick={() => movePage('/notice', null)}>공지사항</li>
-            <li onClick={() => movePage('/free-article', null)}>자유게시판</li>
-            <li onClick={() => movePage('/qna-article', null)}>질문게시판</li>
+            <li onClick={() => movePage('/notice', 'NOTICE')}>공지사항</li>
+            <li onClick={() => movePage('/free-article', 'FREE_BOARD')}>자유게시판</li>
+            <li onClick={() => movePage('/qna-article', 'QUESTION_BOARD')}>질문게시판</li>
           </ul>
         </nav>
       </div>
