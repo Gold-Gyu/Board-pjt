@@ -6,9 +6,16 @@ interface PagenationProps {
   itemsPerPage: number;
   currentPage: number;
   onPageChange: (pageNumber: number) => void;
+  maxPageNumbers?: number; // 추가된 prop
 }
 
-const Pagenation = ({ totalItems, itemsPerPage, currentPage, onPageChange }: PagenationProps) => {
+const Pagenation = ({ 
+  totalItems, 
+  itemsPerPage, 
+  currentPage, 
+  onPageChange, 
+  maxPageNumbers = 5 // 기본값 설정
+}: PagenationProps) => {
   const totalPages = Math.ceil(totalItems / itemsPerPage);
 
   const handleClick = (pageNumber: number) => {
@@ -17,8 +24,14 @@ const Pagenation = ({ totalItems, itemsPerPage, currentPage, onPageChange }: Pag
 
   const renderPageNumbers = () => {
     const pageNumbers = [];
+    let startPage = Math.max(1, currentPage - Math.floor(maxPageNumbers / 2));
+    let endPage = Math.min(totalPages, startPage + maxPageNumbers - 1);
 
-    for (let i = 1; i <= totalPages; i++) {
+    if (endPage - startPage + 1 < maxPageNumbers) {
+      startPage = Math.max(1, endPage - maxPageNumbers + 1);
+    }
+
+    for (let i = startPage; i <= endPage; i++) {
       pageNumbers.push(
         <button
           key={i}
@@ -29,6 +42,33 @@ const Pagenation = ({ totalItems, itemsPerPage, currentPage, onPageChange }: Pag
         </button>
       );
     }
+
+    if (startPage > 1) {
+      pageNumbers.unshift(<span key="ellipsis-start">...</span>);
+      pageNumbers.unshift(
+        <button
+          key={1}
+          className={`page-number ${currentPage === 1 ? 'active' : ''}`}
+          onClick={() => handleClick(1)}
+        >
+          1
+        </button>
+      );
+    }
+
+    if (endPage < totalPages) {
+      pageNumbers.push(<span key="ellipsis-end">...</span>);
+      pageNumbers.push(
+        <button
+          key={totalPages}
+          className={`page-number ${currentPage === totalPages ? 'active' : ''}`}
+          onClick={() => handleClick(totalPages)}
+        >
+          {totalPages}
+        </button>
+      );
+    }
+
     return pageNumbers;
   };
 
