@@ -5,11 +5,13 @@ import { useEffect, useState } from 'react';
 import { useLocation, useParams } from 'react-router-dom';
 import { Article } from '@/types/Article';
 import instance from '@/apis/instance';
+import { FaHeart } from 'react-icons/fa6';
 
 const ArticlePage = () => {
   const params = useParams();
   const [article, setArticle] = useState<Article | null>(null);
   const [comment, setComment] = useState('');
+  const [isLiked, setIsLiked] = useState(false);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -34,19 +36,27 @@ const ArticlePage = () => {
     setComment('');
   };
 
+  const handleLike = () => {
+    setIsLiked(!isLiked);
+    console.log('좋아요');
+  };
+
   const { goBack } = useMovePage();
   return (
-    <div>
-      <div className="table-container">
+    <div className="article-page-container">
+      <div className="article-content">
         {article ? (
           <div>
-            <div>
-              <h1>{article.title}</h1>
-              <div dangerouslySetInnerHTML={{ __html: article.content }} />
-              <p>작성자: {article.author}</p>
-              <p>작성일: {article.publishDate}</p>
-              <p>조회수: {article.views}</p>
+            <h1 className="article-title">{article.title}</h1>
+            <div className="article-meta">
+              <span>작성자: {article.author}</span>
+              <span>작성일: {article.publishDate}</span>
+              <span>조회수: {article.views}</span>
+              <button className={`like-button ${isLiked ? 'liked' : ''}`} onClick={handleLike}>
+                <FaHeart /> {isLiked ? '좋아요 취소' : '좋아요'}
+              </button>
             </div>
+            <div className="article-body" dangerouslySetInnerHTML={{ __html: article.content }} />
 
             <div className="comment-section" style={{ marginTop: '30px', padding: '20px', border: '1px solid #ddd', borderRadius: '10px', backgroundColor: '#f9f9f9' }}>
               <h2 style={{ marginBottom: '20px' }}>댓글창</h2>
