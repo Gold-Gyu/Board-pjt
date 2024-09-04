@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import './LoginPage.css';
 import Button from '@/components/Button/Button';
 import useMovePage from '@/hooks/useMovePage';
+import instance from '@/apis/instance';
 
 const LoginPage = () => {
   const { movePage } = useMovePage();
@@ -19,6 +20,15 @@ const LoginPage = () => {
   };
 
   const sendLoginInfo = () => {
+    const fetchData = async () => {
+      try {
+        const response = await instance.post('/login');
+        console.log(response);
+      } catch {
+        console.log('error');
+      }
+    };
+    fetchData();
     console.log(userEmail);
     console.log(userPassword);
   };
