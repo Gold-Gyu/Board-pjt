@@ -29,7 +29,7 @@ const BoardIntro = ({ category }: { category: string}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await instance.get('');
+        const response = await instance.get('/api/articles');
         setGetArticleData(response.data);
         
         // NOTICE 카테고리 필터링
@@ -72,7 +72,7 @@ const BoardIntro = ({ category }: { category: string}) => {
   // 현재 페이지에 표시할 게시글 데이터 계산
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentItems = displayData.slice(indexOfFirstItem, indexOfLastItem);
+  let currentItems = displayData.slice(indexOfFirstItem, indexOfLastItem);
 
   // 총 페이지 수 계산
   const totalPages = Math.ceil(displayData.length / itemsPerPage);
@@ -80,6 +80,10 @@ const BoardIntro = ({ category }: { category: string}) => {
   const handlePageChange = (pageNumber: number) => {
     setCurrentPage(pageNumber);
   };
+
+  if (!Array.isArray(currentItems)) {
+    currentItems = []; // 배열이 아닌 경우 빈 배열로 설정
+}
 
   return (
     <div className="app">
