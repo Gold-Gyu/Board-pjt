@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import './SignupPage.css';
 import useMovePage from '@/hooks/useMovePage';
+import instance from '@/apis/instance';
 
 const SignupPage = () => {
   const { movePage } = useMovePage();
@@ -15,11 +16,30 @@ const SignupPage = () => {
   const [sentVerificationCode, setSentVerificationCode] = useState('');
   const [emailError, setEmailError] = useState<string | null>(null);
 
+  const signup = async () => {
+    const data = {
+      nickName: nickname,
+      email: email,
+      password: emailConfirm,
+    };
+    try {
+      const response = await instance.post('/api/articlesuser', data);
+      console.log('성공');
+      console.log(response);
+
+      // movePage('/login', null);
+    } catch {
+      console.log('error');
+    }
+  };
+
   const handleEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmail(e.target.value);
   };
 
-  const handleVerificationCodeChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handleVerificationCodeChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     setVerificationCode(e.target.value);
   };
 
@@ -55,25 +75,28 @@ const SignupPage = () => {
     setPassword(e.target.value);
   };
 
-  const handlePasswordConfirmChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+  const handlePasswordConfirmChange = (
+    e: React.ChangeEvent<HTMLInputElement>,
+  ) => {
     const value = e.target.value;
     setPasswordConfirm(value);
     setIsPasswordMatch(value === password);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     if (isEmailVerified && isPasswordMatch) {
-      console.log('회원가입 요청:', {
-        email,
-        nickname,
-        password,
-      });
-      movePage('/home', null);
+      try {
+        await signup();
+        console.log('회원가입 성공');
+        movePage('/login', null);
+      } catch (error) {
+        console.error('회원가입 실패:', error);
+        alert('회원가입에 실패했습니다. 다시 시도해주세요.');
+      }
     } else {
       alert('모든 필드를 올바르게 입력해주세요.');
       console.log('입력 조건 불충족');
-      
     }
   };
 
@@ -163,7 +186,9 @@ const SignupPage = () => {
                 }
               />
               {isPasswordMatch === false && (
-                <div className="error-message">비밀번호가 일치하지 않습니다.</div>
+                <div className="error-message">
+                  비밀번호가 일치하지 않습니다.
+                </div>
               )}
               {isPasswordMatch && (
                 <div className="success-message">
@@ -171,7 +196,10 @@ const SignupPage = () => {
                 </div>
               )}
             </div>
-            <button type="submit" disabled={!isEmailVerified || !isPasswordMatch}>
+            <button
+              type="submit"
+              disabled={!isEmailVerified || !isPasswordMatch}
+            >
               회원가입
             </button>
           </form>
