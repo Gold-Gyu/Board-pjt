@@ -21,16 +21,23 @@ const LoginPage = () => {
 
   const sendLoginInfo = () => {
     const fetchData = async () => {
+      const formData = new URLSearchParams();
+      formData.append('email', userEmail);
+      formData.append('password', userPassword);
+
       try {
-        const response = await instance.post('/login');
+        const response = await instance.post('/login', formData, {
+          headers: {
+            'Content-Type': 'application/x-www-form-urlencoded'
+          }
+        });
         console.log(response);
-      } catch {
-        console.log('error');
+        console.log(formData.toString());
+      } catch (error) {
+        console.log('error', error);
       }
     };
     fetchData();
-    console.log(userEmail);
-    console.log(userPassword);
   };
 
   return (
