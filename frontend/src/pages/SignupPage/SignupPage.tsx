@@ -20,11 +20,13 @@ const SignupPage = () => {
     const data = {
       nickName: nickname,
       email: email,
-      password: emailConfirm,
+      password: password,
     };
     try {
-      const response = await instance.post('/api/articlesuser', data);
+      const response = await instance.post('/signup', data);
       console.log('성공');
+      console.log(data);
+      
       console.log(response);
 
       // movePage('/login', null);
