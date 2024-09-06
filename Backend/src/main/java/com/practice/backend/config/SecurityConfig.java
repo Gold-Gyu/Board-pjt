@@ -1,16 +1,18 @@
 package com.practice.backend.config;
 
 import com.practice.backend.service.UserDetailService;
+import jakarta.servlet.http.HttpServletResponse;
+import lombok.RequiredArgsConstructor;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
-import org.springframework.http.HttpStatus;
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
+import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.authentication.configuration.AuthenticationConfiguration;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
+import org.springframework.security.config.annotation.web.configurers.AbstractHttpConfigurer;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.security.web.SecurityFilterChain;
-import org.springframework.security.web.authentication.HttpStatusEntryPoint;
 import org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint;
 import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -20,29 +22,25 @@ import org.springframework.web.cors.CorsConfiguration;
 import java.util.List;
 
 import static org.springframework.boot.autoconfigure.security.servlet.PathRequest.toH2Console;
-
+@RequiredArgsConstructor
 @Configuration
 @EnableWebSecurity
-public class WebSecurityConfig {
+public class SecurityConfig {
 
     private final UserDetailService userService;
 
-    public WebSecurityConfig(UserDetailService userService) {
-        this.userService = userService;
-    }
-
-    // 스프링 시큐리티 기능 비활성화 (H2 콘솔과 정적 리소스 무시)
     @Bean
     public WebSecurityCustomizer configure() {
-        return (web -> web.ignoring()
+        return (web) -> web.ignoring()
                 .requestMatchers(toH2Console())
-                .requestMatchers("/static/**"));  // 정적 리소스에 대한 접근 허용
+                .requestMatchers("/static/**");
     }
+
+
 
     @Bean
     public SecurityFilterChain filterChain(HttpSecurity http) throws Exception {
         http
-//                .cors(cors -> cors.disable()) // CORS 설정 추가 (사용할 경우 disable() 제거)
                 .cors(cors -> cors.configurationSource(request -> {
                     CorsConfiguration config = new CorsConfiguration();
                     config.setAllowedOrigins(List.of("http://localhost:5173")); // 프론트엔드 도메인 허용
@@ -50,16 +48,23 @@ public class WebSecurityConfig {
                     config.setAllowedHeaders(List.of("*")); // 모든 헤더 허용
                     config.setAllowCredentials(true); // 인증 정보(쿠키 등) 허용
                     return config;
-                })) // CSRF 비활성화
+                }))
+                .csrf(AbstractHttpConfigurer::disable)// CSRF 비활성화
                 .authorizeHttpRequests(authorize -> authorize
-                        .requestMatchers("/login", "/signup", "/user").permitAll() // 로그인, 회원가입 허용
+                        .requestMatchers("/login", "/signup", "/signup").permitAll() // 로그인, 회원가입 허용
+//                        .requestMatchers("/static/**", "/h2-console/**").permitAll()
                         .anyRequest().authenticated() // 그 외 요청은 인증 필요
                 )
                 .formLogin(formLogin -> formLogin
-                        .loginPage("http://localhost:5173/login") // 프론트엔드 로그인 페이지 경로
                         .loginProcessingUrl("/login") // 로그인 처리 URL
                         .defaultSuccessUrl("http://localhost:5173/home") // 로그인 성공 시 이동할 경로
-//                        .failureUrl("http://localhost:5173/signup") // 로그인 실패 시 리다이렉트 경로
+                        .usernameParameter("email")     // "username" 대신 "email"로 변경
+                        .passwordParameter("password")     // 프론트엔드에서 'password' 필드가 비밀번호
+                        .failureHandler((request, response, exception) -> {
+                            // 실패 시 401 응답 반환
+                            response.setStatus(HttpServletResponse.SC_UNAUTHORIZED);
+                            response.getWriter().write("Unauthorized: Invalid credentials");
+                        })// 로그인 실패 시 리다이렉트 경로
                         .permitAll() // 로그인 페이지 및 인증 관련 경로 모두 허용
                 )
                 .logout(logout -> logout
@@ -82,19 +87,19 @@ public class WebSecurityConfig {
     // AuthenticationProvider 설정
     @Bean
     public DaoAuthenticationProvider authenticationProvider() {
-        System.out.println("Authentication Provider");
         DaoAuthenticationProvider authProvider = new DaoAuthenticationProvider();
         authProvider.setUserDetailsService(userService);
         authProvider.setPasswordEncoder(bCryptPasswordEncoder());
-        System.out.println("인증");
         return authProvider;
     }
 
-    // AuthenticationManager 설정
     @Bean
-    public AuthenticationManager authenticationManager(AuthenticationConfiguration authenticationConfiguration) throws Exception {
-        return authenticationConfiguration.getAuthenticationManager();
+    public AuthenticationManager authenticationManager(HttpSecurity http) throws Exception {
+        AuthenticationManagerBuilder builder = http.getSharedObject(AuthenticationManagerBuilder.class);
+        builder.authenticationProvider(authenticationProvider());  // 명시적으로 DaoAuthenticationProvider 설정
+        return builder.build();
     }
+
 
     @Bean
     public BCryptPasswordEncoder bCryptPasswordEncoder() {
