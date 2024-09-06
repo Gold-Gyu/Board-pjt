@@ -12,12 +12,20 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 @RequiredArgsConstructor
-@Controller
+@RestController
 @CrossOrigin(origins = "http://localhost:5173")
 public class UserApiController {
     private final UserService userService;
 
-    @PostMapping("/api/articles/user")
+//    @PostMapping("/login")
+//    public ResponseEntity<String> login(@RequestBody AddUserRequest dto, HttpServletRequest httpServletRequest, HttpServletResponse httpServletResponse)  {
+//        // 프론트엔드의 로그인 페이지 경로로 리다이렉트
+//        System.out.println("email : " + dto.getEmail());
+//        System.out.println("password : " + dto.getPassword());
+//        return null;
+//    }
+
+    @PostMapping("/signup")
     public ResponseEntity<String> signup(@RequestBody AddUserRequest request) {
         Long userId = userService.save(request);
         System.out.println(ResponseEntity.ok("User created successfully with ID: " + userId));
@@ -25,7 +33,7 @@ public class UserApiController {
         return ResponseEntity.ok("User created successfully with ID: " + userId);
     }
 
-    @GetMapping("/api/articles/logout")
+    @GetMapping("/logout")
     public ResponseEntity<String> logout(HttpServletRequest request, HttpServletResponse response) {
         System.out.println("logout successful");
         new SecurityContextLogoutHandler().logout(request, response, SecurityContextHolder.getContext().getAuthentication());
