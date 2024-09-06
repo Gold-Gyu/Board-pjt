@@ -5,4 +5,17 @@ spring:
       path: /h2-console
   datasource:
     url: jdbc:h2:mem:testdb
-    username : sa
+    username: sa
+    password: ''
+  jpa:
+    hibernate:
+      ddl-auto: update  # 테이블 자동 생성 (create, update, validate 중 선택)
+    open-in-view: false
+    properties:
+      hibernate:
+        format_sql: true
+  logging:
+    level:
+      org:
+        springframework:
+          security=DEBUG:
