@@ -16,7 +16,7 @@ const ArticlePage = () => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await instance.get(`/${params.spid}`);
+        const response = await instance.get(`api/articles/${params.spid}`, {withCredentials: true});
         setArticle(response.data);
       } catch {
         console.log('error');
