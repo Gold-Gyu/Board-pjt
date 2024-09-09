@@ -28,13 +28,19 @@ const LoginPage = () => {
       try {
         const response = await instance.post('/login', formData, {
           headers: {
-            'Content-Type': 'application/x-www-form-urlencoded'
-          }
+            'Content-Type': 'application/x-www-form-urlencoded',
+          },
+          withCredentials: true, // 쿠키를 받아서 이후 요청에 자동으로 포함
         });
-        console.log(response);
-        console.log(formData.toString());
+
+        if (response.status === 200) {
+          // 로그인 성공 시 /home 페이지로 이동
+          movePage('/home', null);
+        }
+        
+        
       } catch (error) {
-        console.log('error', error);
+        console.log('로그인 오류:', error);
       }
     };
     fetchData();
