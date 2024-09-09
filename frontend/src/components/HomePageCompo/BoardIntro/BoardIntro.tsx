@@ -29,7 +29,7 @@ const BoardIntro = ({ category }: { category: string}) => {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await instance.get('/api/articles');
+        const response = await instance.get('/api/articles', {withCredentials: true});
         setGetArticleData(response.data);
         
         // NOTICE 카테고리 필터링
