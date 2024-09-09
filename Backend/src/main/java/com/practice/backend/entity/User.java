@@ -45,10 +45,14 @@ public class User implements UserDetails {
     private int followedCount;
 
     @Builder
-    public User(String email, String password, String nickName) {
+    public User(String email, String password, String nickName, int visitCount, int articleCount, int followerCount, int followedCount) {
         this.email = email;
         this.password = password;
         this.nickName = nickName;
+        this.visitCount = visitCount;
+        this.articleCount = articleCount;
+        this.followerCount = followerCount;
+        this.followedCount = followedCount;
     }
 
     // 권한을 반환
@@ -83,13 +87,13 @@ public class User implements UserDetails {
     public boolean isCredentialsNonExpired() {
         return true;
     }
-
     //계정사용 가능 여부 반환
     @Override
-    public boolean isEnabled() {
-
-    // 계정이 사용 가능한지 확인로직
+    public boolean isEnabled() {// 계정이 사용 가능한지 확인로직
         return true;
     }
 
+    public void setVisitCount(int visitCount) {
+        this.visitCount = visitCount;
+    }
 }
