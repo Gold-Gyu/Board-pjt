@@ -15,7 +15,19 @@ const Sidebar = () => {
   const [showModal, setShowModal] = useState(false);
 
   // 서버 데이터 받아오기
-  
+  useEffect( () => {
+    const fetchUserData = async() => {
+      try {
+        const response = await instance.get('/user-info', {withCredentials: true});
+        // 사용자 데이터 처리 로직
+        console.log(response);
+        
+      } catch (error) {
+        console.error('사용자 데이터 가져오기 오류:', error);
+      }
+    };
+    fetchUserData();
+  })
 
   const handleCancelClick = () => {
     setShowModal(true);
@@ -28,9 +40,28 @@ const Sidebar = () => {
   const handleConfirmCancel = () => {
     console.log('확인합니다.');
     setShowModal(false);
-    movePage('/home', 'QUESTION_BOARD');
+    movePage('/home', null);
   };
   const { movePage } = useMovePage();
+
+  const handleLogout = async () => {
+    console.log('gd');
+    
+    try {
+      const response = await instance.post('/logout', {}, {withCredentials: true});
+      // 로그아웃 성공 시 홈 페이지로 이동
+      if (response.status === 200) {
+        console.log('로그아웃 성공');
+        // 로그아웃 후 페이지 이동
+        movePage('/login', null);
+    }
+
+    } catch (error) {
+      console.error('로그아웃 실패:', error);
+      // 에러 처리 (예: 사용자에게 알림 표시)
+    }
+  };
+
   return (
     <aside className="sidebar">
       <div className="info-container">
@@ -85,6 +116,7 @@ const Sidebar = () => {
             <li onClick={() => movePage('/free-article', 'FREE_BOARD')}>자유게시판</li>
             <li onClick={() => movePage('/qna-article', 'QUESTION_BOARD')}>질문게시판</li>
           </ul>
+          <button onClick={handleLogout}>로그아웃</button>
         </nav>
       </div>
       {showModal && (

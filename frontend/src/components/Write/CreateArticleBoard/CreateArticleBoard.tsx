@@ -26,7 +26,7 @@ const CreateArticleBoard = () => {
       authorId: 1,
     }
     try {
-      const response = await instance.post('', data);
+      const response = await instance.post('api/articles', data, {withCredentials: true});
       movePage('/home', null)
       
     } catch {
